@@ -1,0 +1,7 @@
+#Ignores
+__pycache__
+app/__pycache__
+app/auth/__pycache__
+app/base/__pycache__
+app/classes/__pycache__
+app/consultas/__pycache__
