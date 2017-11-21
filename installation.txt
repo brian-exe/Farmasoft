@@ -1,0 +1,13 @@
+-PASOS PARA EJECUTAR LA APLICACION-
+
+1) Descargar el codigo fuente.
+	Usando "git clone https://github.com/brian-exe/Farmasoft.git"
+
+2) Instalar las dependencias necesarias.
+	Usando "pip install -r requirements.txt"
+
+3) Ejecutar la aplicación.
+	Usando "python run.py"
+
+4) Ingresar desde el navegador.
+	(localhost:5000)

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title%}
+Agregar Producto
+{% endblock %}
+
+{% block content %}
+{{ formulario.csrf_token }}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>Agregar Venta </h1>
+            <form class="form-horizontal" method="POST" action="#">
+            {{ formulario.hidden_tag() }}
+                <div class="form-group col-md-10">
+                    <div class="form-group">
+                    {{ formulario.codigo.label(class="control-label col-md-2") }}
+                        <div class="col-md-10">
+                            {{ formulario.codigo(class_="form-control") }}
+                            {% if 'codigo' in formulario.errors %}
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ formulario.errors['codigo'][0] }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    {{ formulario.producto.label(class="control-label col-md-2") }}
+                        <div class="col-md-10">
+                            {{ formulario.producto(class_="form-control") }}
+                            
+                            {% if 'producto' in formulario.errors %}
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ formulario.errors['producto'][0] }}
+                                </div>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    {{ formulario.cliente.label(class="control-label col-md-2") }}
+                    <div class="col-md-10">
+                        {{ formulario.cliente(class_="form-control") }}
+                        {% if 'cliente' in formulario.errors %}
+                            <div class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{ formulario.errors['cliente'][0] }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    {{ formulario.cantidad.label(class="control-label col-md-2") }}
+                    <div class="col-md-10">    
+                        {{ formulario.cantidad(class_="form-control") }}
+                        {% if 'cantidad' in formulario.errors %}
+                            <div class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{ formulario.errors['cantidad'][0] }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                    <div class="form-group">
+                    {{ formulario.precio.label(class="control-label col-md-2") }}
+                    <div class="col-md-10">
+                        {{ formulario.precio(class_="form-control") }}
+                        {% if 'precio' in formulario.errors %}
+                            <div class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{ formulario.errors['precio'][0] }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    </div>
+                    {{formulario.submit(class="btn btn-default pull-right")}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts%}
+{{ super() }}
+<script>
+    {% if (mostrar_mje) %}
+        alert("Se agregó Correctamente!");
+        window.location.href = "/lista";
+    {% endif %}
+</script>
+{% endblock %}

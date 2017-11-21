@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/login_style.css">
+{% endblock %}
+
+{% block title %}
+Listar Archivo
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="/static/images/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin" method="POST" action="#">
+            <span id="reauth-email" class="reauth-email"></span>
+            {{ form.csrf_token }}</br>
+            {{ form.name.label }} {{ form.name(size=20) }}</br>
+            {% if 'name' in form.errors %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ form.errors['name'][0] }}
+            </div>
+            {% endif %}
+            {{ form.password.label }} {{ form.password(size=20) }}</br>
+            {% if 'password' in form.errors %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ form.errors['password'][0] }}
+            </div>
+            {% endif %}
+            {{ form.submit }}
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <h4><span class="label label-info">{{ message }}</span>&nbsp;</h4>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

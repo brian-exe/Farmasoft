@@ -1,0 +1,64 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="/static/images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/static/stylesheets/base_style.css">
+{% endblock %}
+
+{% block navbar %}
+
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Farmasoft</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="/">Inicio</a></li>
+        {% if current_user.is_authenticated %}
+            <li><a href="/lista">Listar</a></li>
+            {% if current_user.is_admin() %}
+                <li><a href="/AgregarVenta">Agregar Venta</a></li>
+            {% endif %}
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/productosCliente/">Productos por cliente</a></li>
+                  <li><a href="/clientesProductos/">Clientes por producto</a></li>
+                  <li><a href="/masVendidos/">Productos mas vendidos</a></li>
+                  <li><a href="/mejoresClientes/">Clientes con mayor gasto</a></li>
+                </ul>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+            
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Configuraciones
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/cambiarPassword">Cambiar Password</a></li>
+                        {% if current_user.is_admin() %}
+                            <li><a href="/editarRolesUsuarios">Editar roles usuarios</a></li>
+                            <li><a href="/cambiarArchivo">Cambiar archivos de datos</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        {% else %}
+            <li><a href="/alta"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        {% endif %}
+    </ul>
+    
+  </div>
+</nav> 
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}

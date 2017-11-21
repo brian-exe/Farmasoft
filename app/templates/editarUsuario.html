@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title%}
+Editar Usuario
+{% endblock %}
+
+{% block content %}
+{{ formulario.csrf_token }}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1>Editar Usuario </h1>
+            <form class="form-horizontal" method="POST" action="#">
+            {{ formulario.hidden_tag() }}
+                <div class="form-group col-md-10">
+                    <div class="form-group">
+                    {{ formulario.username.label(class="control-label col-md-2") }}
+                        <div class="col-md-10">
+                            {{ formulario.username(class_="form-control",disabled="disabled") }}
+                            {% if 'username' in formulario.errors %}
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ formulario.errors['username'][0] }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    {{ formulario.roles.label(class="control-label col-md-2") }}
+                        <div class="col-md-10">
+                            {{ formulario.roles(class_="form-control") }}
+                            
+                            {% if 'roles' in formulario.errors %}
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ formulario.errors['roles'][0] }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {{formulario.submit(class="btn btn-default pull-right")}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts%}
+{{ super() }}
+{% endblock %}

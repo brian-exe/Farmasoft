@@ -1,0 +1,21 @@
+CODIGO,PRODUCTO,CLIENTE,CANTIDAD,PRECIO
+00001,Aliviol 3000,Farmacia Nueva Chingolo,1,asd
+00001,Aliviol 3000,Farmacia Nueva Chingolo,1,24.500
+000123,Loratadina 300 ml,Farmacia Mariano Moreno,2,52.305
+00356,Amoxcicilina 1000,Farmacia San Martin,3,24.500
+00111,Buscapina x 14,Farmacia Faustino Sarmiento,4,24.500
+01288,Curitas x500,Farmacia Bartolome Mitre,5,24.500
+00999,Refrianex,Farmacia Julio Roca,6,24.500
+1234,Cafiaspirina,Jose S.A,568,12.36
+00001,Ibuprofeno,Juan SRL,2,300
+0002,Don Satur,Don,400,12.50
+222,Aspirinete,Flor,6,8
+123,Ketorolac,Isabela,10,500
+123456,TEST 1,Juan,60000,1.50
+123456,TEST 2,Juan,100,1.50
+123456,TEST 3,Juan,600,1.50
+1234,Cafiaspirina,Ezequiel,100,5.50
+7988,Prueba,Cliente Prueba,2,2.50
+123,123,123,123,123
+78910,Aliviol 3000,Juan,500,1280
+123,456,789,101112,131415

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{super()}}
+<style>
+    div{text-align: center;}
+</style>
+{% endblock %}
+
+{% block content %}
+    
+<div class="container container-fluid">
+    <div>
+        <div>
+            <h1>Bienvenido a Farmasoft {{ current_user.name }}!</h1>
+        </div>
+    </div>
+    <div>
+        <div>
+            <p>Farmasoft es un sistema web que le permite llevar el control de sus ventas</p>
+            <p>Mediante el uso de las mejores tecnologias, le brinda la mejor administracion y estadísticas sobre sus ventas</p>
+            
+        </div>
+    
+    {% if current_user.is_authenticated %}
+        <p>Puede hacer click en cualquiera de las opciones disponibles en la barra de menu.</p>
+        <p> Por ejemplo, click <a href="/lista" style="text-decoration:none">aqui</a> para ver la lista de todas las ventas</p>
+    {% endif %}
+    
+    </div>
+</div>
+{% endblock %}
+

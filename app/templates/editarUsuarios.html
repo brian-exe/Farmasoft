@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}
+Lista de usuarios
+{% endblock %}
+
+
+{% block content %}
+<style>
+tr { cursor: pointer; }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Listado de usuarios</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <tr>
+                {% for item in model[0] %}
+                    <th>
+                    {{ item }}
+                    </th>
+                {% endfor %}
+                </tr>
+                {% for i in range(1,model|length) %}
+                <tr class='clickable-row' data-href="/editarRolUsuario/{{model[i][0]}}"> 
+                    {% for j in range(model[i]|length)%}
+                        <td>               
+                            {{ model[i][j] }}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    $(document).ready(function() {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+{% endblock %}
+

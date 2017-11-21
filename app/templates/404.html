@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/746852/739588/css/fonts.css" />
+    <style>
+    body{
+    font-family: "Whitney SSm A", "Whitney SSm B", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    }
+    h1{
+      font-size:200pt;
+    }
+    div{text-align: center;}
+    
+    #primero{height:70%}
+    #segundo{height:30%}
+    
+  </style>
+{% endblock %}
+
+{% block title %}
+(404) La pagina que estas buscando, no existe
+{% endblock %}
+
+{% block content %}
+<body>
+
+<div class="container container-fluid">
+    <div class="row" id="primero">
+      <div class="col-md-12">
+        <h1>404</h1>
+      </div>
+    </div>
+    
+    <div class="row" id="segundo">
+        <div class="col-md-12">
+            <p> La pagina que estas buscando no existe, por favor verifica la dirección.</p>
+            <p class="return">Volver a <a href="/">farmasoft</a></p>
+        <div>
+    </div>
+</div>
+
+</body>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+Cambiar archivo de datos usado
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Archivos de datos disponibles</h1>
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col-md-12">
+                <h3>A continuacion elija de la lista el archivo a usar </h3>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <th>Nombre Archivo</th>
+                {% for item in model['lista_archivos'] %}
+                <tr>
+                    <td>                    
+                        {{ item }} {% if item == model['archivo_actual'] %} <strong>(usado actualmente)</strong>{% endif %}
+                    </td>
+                    <td>
+                        <a href="/cambiarArchivo/archivo={{item}}" class="btn btn-primary pull-right">Elegir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

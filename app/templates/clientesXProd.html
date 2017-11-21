@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/pxcliente_style.css">
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="/static/scripts/jquery.tabletoCSV.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#export").click(function(){
+                $("#resultados").tableToCSV();
+        });
+    });
+    
+</script>
+<script>
+    function showResults() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('search-input');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("clientList");
+        li = ul.getElementsByTagName('li');
+    
+        //Ocultar elementos cuando el input está vacio
+        if (input.value == ""){
+            for (i = 0; i < li.length; i++) {
+                li[i].style.display = "none";
+            }
+        }
+        else if(input.value.length >=3){
+            // Iterar sobre los resultados y solo mostrar los que correspondan
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "block";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h2>Busqueda de clientes por producto</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <input type="text" id="search-input" onkeyup="showResults()" placeholder="Ingrese al menos tres letras del producto a buscar.." class="form-control">
+
+            <ul id="clientList">
+                {% for producto in lista_productos %}
+                    <li><a href="/clientesProductos/producto={{producto}}" >{{producto}}</a></li>
+                {% endfor %}
+
+            </ul> 
+        </div>
+        <hr>
+    </div>
+    {% if lista_clientes %}
+        {% if lista_clientes|length >1 %}
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <br>
+                <h4>Resultados para <strong>"{{busqueda}}"</strong> </h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a id="export" data-export="export" style="cursor: pointer" class="pull-right" >Descargar resultados</a>
+                    </div>
+                </div>
+                <table id="resultados" class="table table-hover">
+                    <tr>
+                    {% for item in lista_clientes[0] %}
+                        <th>{{ item }}</th>
+                    {% endfor %}
+                    </tr>
+                    {% for i in range(1,lista_clientes|length) %}
+                    <tr>
+                        {% for j in range(lista_clientes[i]|length)%}
+                            <td>{{ lista_clientes[i][j] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+            </div>
+         </div>
+        {% else %}
+        <div class="col-md-10 col-md-offset-1">
+            <br>
+            <h4>Sin resultados para <strong>"{{busqueda}}"</strong> </h4>
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

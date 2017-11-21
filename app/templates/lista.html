@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Listar Archivo
+{% endblock %}
+
+{% block scripts %}
+    {{super()}}
+    <script src="/static/scripts/jquery.tabletoCSV.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#export").click(function(){
+                    $("#lista-ventas").tableToCSV();
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Listado de productos</h1>
+        </div>
+    </div>
+    {% if current_user.is_admin() %}
+        <div class="row">
+            <div class="col-md-12">
+                <a href="AgregarVenta" class="btn btn-primary pull-right"> Agregar Venta</a>
+                <br>
+                <hr>
+            </div>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <a id="export" data-export="export" style="cursor: pointer" >Descargar tabla</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover" id="lista-ventas">
+                <tr>
+                {% for item in model[0] %}
+                    <th>{{ item }}</th>
+                {% endfor %}
+                </tr>
+                {% for i in range(1,model|length) %}
+                <tr>
+                    {% for j in range(model[i]|length)%}
+                        <td>{{ model[i][j] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

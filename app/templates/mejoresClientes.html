@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}
+Mejores Clientes
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2">
+            <h1>Mejores clientes</h1>
+            <div>
+                <div class="col-md-4">
+                    <label for="cant">Cantidad de resultados a mostrar</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" min="1" class="form-control" id="cant">
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary"  onclick="submit()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if lista_resultados|length >0 %}
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <br>
+                <h4>Resultados</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a id="export" data-export="export" style="cursor: pointer" class="pull-right" >Descargar resultados</a>
+                    </div>
+                </div>
+                <table id="resultados" class="table table-hover">
+                    <tr>
+                    {% for item in lista_resultados[0] %}
+                        <th>{{ item }}</th>
+                    {% endfor %}
+                    </tr>
+                    {% for i in range(1,lista_resultados|length) %}
+                    <tr>
+                        {% for j in range(lista_resultados[i]|length)%}
+                            <td>{{ lista_resultados[i][j] }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+            </div>
+         </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{super()}}
+<script src="/static/scripts/jquery.tabletoCSV.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#export").click(function(){
+                $("#resultados").tableToCSV();
+        });
+    });
+</script>
+
+<script>
+    function submit(){
+        cantidad = document.getElementById("cant").value
+        window.location.replace("/mejoresClientes/cantResultados=" + cantidad);
+    }
+</script>
+{% endblock %}
+
